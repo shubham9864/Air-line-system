@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation - Royal Airways</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/royal-theme.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-container">
+                <a href="../index.html" class="logo">
+                    <span class="crown-icon">👑</span>
+                    <h1>Royal Airways</h1>
+                </a>
+            </div>
+            <nav class="app-nav">
+                <ul>
+                    <li><a href="../pages/index.html">Home</a></li>
+                    <li><a href="../pages/search.html">Flights</a></li>
+                    
+                </ul>
+            </nav>
+            <div class="user-menu">
+                <div class="user-info">
+                    <span id="user-greeting">Welcome</span>
+                </div>
+                <button id="logout-btn" class="btn btn-logout">Logout</button>
+            </div>
+            <button class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </header>
+
+        <main class="app-main">
+            <section class="confirmation-section">
+                <div class="confirmation-container">
+                    <div class="confirmation-header">
+                        <div class="success-icon">✓</div>
+                        <h2>Booking Confirmed!</h2>
+                        <p>Your payment has been processed successfully.</p>
+                    </div>
+                    
+                    <div class="booking-details">
+                        <h3>Booking Information</h3>
+                        
+                        <div class="detail-card">
+                            <div class="detail-header">
+                                <h4>Booking Reference</h4>
+                                <div id="booking-reference" class="reference-number">RA1234567</div>
+                            </div>
+                            
+                            <div class="flight-info" id="confirmation-flight-details">
+                                <!-- Flight details will be populated here by JavaScript -->
+                            </div>
+                            
+                            <div class="passenger-info" id="confirmation-passenger-details">
+                                <!-- Passenger details will be populated here by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="actions">
+                            <button id="download-ticket" class="btn btn-secondary">Download E-Ticket</button>
+                            <button id="email-ticket" class="btn btn-secondary">Email E-Ticket</button>
+                        </div>
+                    </div>
+                    
+                    <div class="next-steps">
+                        <h3>Next Steps</h3>
+                        <ul>
+                            <li>Check-in opens 24 hours before your flight</li>
+                            <li>Arrive at the airport at least 2 hours before departure</li>
+                            <li>Bring a valid ID for verification</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="confirmation-footer">
+                        <a href="../pages/search.html" class="btn btn-primary">Book Another Flight</a>
+                        <a href="../pages/index.html" class="btn btn-outline">Return to Home</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>&copy; 2025 Royal Airways. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/confirmation.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+  document.getElementById("download-ticket").addEventListener("click", () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const booking = JSON.parse(localStorage.getItem("currentBooking")) || {};
+    const flight = booking.flight || {};
+    const passenger = booking.passenger || {};
+    const user = JSON.parse(localStorage.getItem("currentUser")) || {};
+    
+    const ref = booking.reference || "N/A";
+    const leadName = user.username || "N/A";
+    const email = user.email || "N/A";
+    const totalPassengers = booking.passengers || "1";
+    const baseFare = booking.baseFare || "N/A";
+    const taxes = booking.taxesFees || "N/A";
+    const totalPaid = booking.totalPrice || "N/A";
+    
+    let y = 20;
+
+    // Title
+    doc.setFontSize(18);
+    doc.text("Royal Airways E-Ticket", 20, y);
+
+    doc.setFontSize(12);
+    y += 15;
+    doc.text(`Booking Reference: ${ref}`, 20, y);
+
+    // Flight Info
+    y += 10;
+    doc.setFont(undefined, "bold");
+    doc.text("Flight Information", 20, y);
+    doc.setFont(undefined, "normal");
+    y += 8;
+    doc.text([
+      `Flight Number: ${flight.id || "N/A"}`,
+      `Airline: ${flight.airline || "N/A"}`,
+      `Route: ${flight.origin || ""} → ${flight.destination || ""}`,
+      `Date: ${new Date(flight.date).toDateString() || "N/A"}`,
+      `Departure: ${flight.departureTime || "N/A"}`,
+      `Arrival: ${flight.arrivalTime || "N/A"}`,
+      `Duration: ${flight.duration || "N/A"}`,
+      `Class: ${flight.class || "N/A"}`
+    ], 20, y);
+
+    // Passenger Info
+    y += 60;
+    doc.setFont(undefined, "bold");
+    doc.text(" Passenger Information", 20, y);
+    doc.setFont(undefined, "normal");
+    y += 8;
+    doc.text([
+      `Lead Passenger: ${leadName}`,
+      `Contact: ${email}`,
+      `Total Passengers: ${totalPassengers}`
+    ], 20, y);
+
+    // Payment Info
+    y += 35;
+    doc.setFont(undefined, "bold");
+    doc.text(" Payment Summary", 20, y);
+    doc.setFont(undefined, "normal");
+    y += 8;
+    doc.text([
+      `Base Fare: $${baseFare}`,
+      `Taxes & Fees: $${taxes}`,
+      `Total Paid: $${totalPaid}`
+    ], 20, y);
+
+    // Save PDF
+    doc.save("RoyalAirways_E-Ticket.pdf");
+  });
+</script>
+
+</script>
+</body>
+</html>

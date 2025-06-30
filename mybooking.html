@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Bookings - Royal Airways</title>
+  <link rel="stylesheet" href="../styles/style.css" />
+  <link rel="stylesheet" href="../styles/mybookings.css" />
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo-container">
+        <a href="../index.html" class="logo">
+          <span class="crown-icon">👑</span>
+          <h1>Royal Airways</h1>
+        </a>
+      </div>
+      <nav class="app-nav">
+        <ul>
+          <li><a href="../pages/index.html">Home</a></li>
+          <li><a href="../pages/search.html">Flights</a></li>
+          <li><a href="../pages/mybooking.html" class="active">My Bookings</a></li>
+        </ul>
+      </nav>
+      <div class="user-menu">
+        <span id="user-greeting">Welcome</span>
+        <button id="logout-btn" class="btn btn-logout">Logout</button>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <section class="my-bookings-section">
+        <div class="bookings-container">
+          <h2>My Bookings</h2>
+          <div id="bookings-list" class="bookings-list">
+            <!-- User bookings will be dynamically inserted here -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>&copy; 2025 Royal Airways. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script src="../scripts/auth.js"></script>
+  <script src="../scripts/mybookings.js"></script>
+</body>
+</html>

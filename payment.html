@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Royal Airways</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/royal-theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-container">
+                <a href="../index.html" class="logo">
+                    <span class="crown-icon">👑</span>
+                    <h1>Royal Airways</h1>
+                </a>
+            </div>
+            <nav class="app-nav">
+                <ul>
+                    <li><a href="../pages/index.html">Home</a></li>
+                    <li><a href="../pages/search.html">Flights</a></li>
+                    
+                </ul>
+            </nav>
+            <div class="user-menu">
+                <div class="user-info">
+                    <span id="user-greeting">Welcome</span>
+                </div>
+                <button id="logout-btn" class="btn btn-logout">Logout</button>
+            </div>
+            <button class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </header>
+
+        <main class="app-main">
+            <section class="payment-section">
+                <div class="payment-container">
+                    <h2>Payment Details</h2>
+                    
+                    <div class="booking-summary">
+                        <h3>Booking Summary</h3>
+                        <div id="booking-details" class="booking-details">
+                            <!-- Booking details will be populated here by JavaScript -->
+                        </div>
+                        <div class="price-summary">
+                            <div class="price-item">
+                                <span>Base Fare:</span>
+                                <span id="base-fare">$0.00</span>
+                            </div>
+                            <div class="price-item">
+                                <span>Taxes & Fees:</span>
+                                <span id="taxes-fees">$0.00</span>
+                            </div>
+                            <div class="price-item total">
+                                <span>Total:</span>
+                                <span id="total-price">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form id="payment-form" class="payment-form">
+                        <h3>Card Information</h3>
+                        
+                        <div class="form-group">
+                            <label for="card-holder">Name on Card</label>
+                            <input type="text" id="card-holder" name="cardHolder" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="card-number">Card Number</label>
+                            <input type="text" id="card-number" name="cardNumber" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiry-date">Expiry Date</label>
+                                <input type="text" id="expiry-date" name="expiryDate" placeholder="MM/YY" maxlength="5" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" name="cvv" placeholder="XXX" maxlength="3" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group form-checkbox">
+                            <input type="checkbox" id="save-card" name="saveCard">
+                            <label for="save-card">Save card for future payments</label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block">Pay Now</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>&copy; 2025 Royal Airways. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/payment.js"></script>
+</body>
+</html>

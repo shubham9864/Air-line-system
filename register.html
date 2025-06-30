@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Royal Airways</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/royal-theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="auth-container">
+        <header class="auth-header">
+            <div class="logo-container">
+                <a href="../index.html" class="logo">
+                    <span class="crown-icon">👑</span>
+                    <h1>Royal Airways</h1>
+                </a>
+            </div>
+        </header>
+
+        <main class="auth-main">
+            <div class="auth-card">
+                <h2>Create Your Account</h2>
+                <p class="auth-subtitle">Join the exclusive Royal Airways community</p>
+                
+                <form id="register-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                        <span class="error-message" id="fullName-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                        <span class="error-message" id="email-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                        <span class="error-message" id="phone-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                        <span class="error-message" id="username-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                        <span class="error-message" id="password-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                        <span class="error-message" id="confirmPassword-error"></span>
+                    </div>
+                    
+                    <div class="form-group form-checkbox">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to the <a href="#">Terms and Conditions</a></label>
+                        <span class="error-message" id="terms-error"></span>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                </form>
+                
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="login.html">Login</a></p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="auth-footer-main">
+            <p>&copy; 2025 Royal Airways. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="../scripts/auth.js"></script>
+</body>
+</html>
